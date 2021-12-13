@@ -10,15 +10,13 @@
 
 // Execute 'rustlings hint generics3' for hints!
 
-// I AM NOT DONE
-
-pub struct ReportCard {
-    pub grade: f32,
+pub struct ReportCard<T: std::fmt::Display> {   // Display trait를 기입해주지 않아도 되나, 해주면 객체 생성시 에러를 발생하기 때문에 해주는게 더 좋지 않을까?
+    pub grade: T,                               // 하지 않을 경우 method 호출 라인에서 error 발생
     pub student_name: String,
     pub student_age: u8,
 }
 
-impl ReportCard {
+impl<T: std::fmt::Display> ReportCard<T> {
     pub fn print(&self) -> String {
         format!("{} ({}) - achieved a grade of {}",
             &self.student_name, &self.student_age, &self.grade)
@@ -46,7 +44,7 @@ mod tests {
     fn generate_alphabetic_report_card() {
         // TODO: Make sure to change the grade here after you finish the exercise.
         let report_card = ReportCard {
-            grade: 2.1,
+            grade: "A+",
             student_name: "Gary Plotter".to_string(),
             student_age: 11,
         };
