@@ -17,6 +17,13 @@ trait AppendBar {
 }
 
 //TODO: Add your code here
+impl AppendBar for Vec<String> {
+    fn append_bar(self) -> Self {
+        let mut new_vec = self.clone();
+        new_vec.push(String::from("Bar"));
+        new_vec
+    }
+}
 
 #[cfg(test)]
 mod tests {
